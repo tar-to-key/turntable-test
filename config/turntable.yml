@@ -1,0 +1,13 @@
+development:
+  clusters:
+    user_cluster: # <-- cluster name
+      algorithm: range # <-- only range or range_bsearch sharding is supported currently.
+      # seq:
+      #   connection: user_seq_1   <-これ入れると先には進む
+      shards:
+        - connection: user_shard_1 # <-- shard name
+          less_than: 100           # <-- shard range(like mysql partitioning)
+        - connection: user_shard_2
+          less_than: 200
+        - connection: user_shard_3
+          less_than: 2000000000

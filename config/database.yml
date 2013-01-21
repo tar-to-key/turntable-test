@@ -1,0 +1,26 @@
+connection_spec: &spec
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  pool: 5
+  username: root
+  password:
+  socket: /tmp/mysql.sock
+
+development:
+  <<: *spec
+  database: fairy_development
+  seq: # <-- sequence definition
+    user_seq_1:
+      <<: *spec
+      database: fairy_development_sequencer
+  shards: # <-- shards definition
+    user_shard_1:
+      <<: *spec
+      database: fairy_development_part1
+    user_shard_2:
+      <<: *spec
+      database: fairy_development_part2
+    user_shard_3:
+      <<: *spec
+      database: fairy_development_part3
